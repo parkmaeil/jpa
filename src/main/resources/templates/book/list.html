@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <form th:action="@{/login}" method="post">
+        <table border="1">
+              <tr>
+                  <td>아이디</td>
+                  <td><input type="text" name="username"/></td>
+              </tr>
+            <tr>
+                <td>패스워드</td>
+                <td><input type="password" name="password"/></td>
+            </tr>
+            <tr>
+              <td>
+                <button type="submit">로그인</button>
+              </td>
+            </tr>
+        </table>
+   </form>
+   <a th:href="@{/member/register}">회원가입</a>
+   <table border="1">
+        <tr>
+            <td>제목</td>
+            <td>가격</td>
+            <td>페이지</td>
+        </tr>
+       <tr th:each="book  : ${list}">
+           <td th:text="${book.title}">제목</td>
+           <td th:text="${book.price}">가격</td>
+           <td th:text="${book.page}">페이지</td>
+       </tr>
+   </table>
+</body>
+</html>
