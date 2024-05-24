@@ -14,7 +14,6 @@ import java.util.Optional;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-
     @Autowired
     private MemberRepository memberRepository;
     @Override                                                        // username(bit, password(X)
@@ -24,8 +23,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(!optional.isPresent()){
             throw new UsernameNotFoundException("user not found");
         }
-        Member member=optional.get();
-        return new CustomMember(member); // 회원아이디가 있으면 그 회원의 정보를 리턴-->패스워드비교 ?
+        Member member=optional.get(); // username에 해당하는 사용자정보를 가져오기 -> HttpSession
+        return new CustomMember(member); // 회원아이디가 있으면 그 회원의 정보를 리턴-->패스워드비교 ?->SecurityContextHolder
         // UserDetails(interface)-->User(클래스, username, password, 권한정보)
     }
 }
